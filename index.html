@@ -63,6 +63,82 @@
     body {
       overflow-x: hidden;
       background-color: #0a0a1a;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 768px) {
+      /* 减少主内容区域的高度 */
+      #main-content {
+        min-height: auto;
+        padding: 2rem 0;
+      }
+      
+      /* 调整蛋糕容器大小 */
+      #cake-container {
+        max-width: 250px !important;
+        transform: scale(0.85);
+        transform-origin: center;
+        margin: 0;
+      }
+      
+      /* 优化SVG显示，适应屏幕高度 */
+      #cake {
+        max-height: 70vh;
+        height: auto !important;
+        width: 100%;
+      }
+      
+      /* 调整蜡烛布局 */
+      .velas {
+        margin-bottom: 0.5rem !important;
+        gap: 0.5rem !important;
+      }
+      
+      .candle > div:first-child {
+        height: 10px !important;
+        width: 2px !important;
+      }
+      
+      .fuego {
+        width: 3px !important;
+        height: 5px !important;
+        top: -10px !important;
+      }
+      
+      /* 优化生日文字大小 */
+      #birthday-text {
+        margin-top: 1rem !important;
+      }
+      
+      #birthday-text h1 {
+        font-size: 1.8rem !important;
+      }
+      
+      /* 调整烟花大小 */
+      .fireworks {
+        width: 100px !important;
+        height: 100px !important;
+        background-size: auto 100px !important;
+      }
+    }
+    
+    /* 小屏幕优化 */
+    @media (max-width: 480px) {
+      #cake-container {
+        transform: scale(0.7);
+      }
+      
+      #intro-text {
+        font-size: 1rem !important;
+      }
+      
+      .fireworks {
+        width: 80px !important;
+        height: 80px !important;
+        background-size: auto 80px !important;
+      }
     }
     
     /* 首屏文字动画 */
@@ -233,7 +309,7 @@
   </div>
   
   <!-- 主内容区域 -->
-  <div id="main-content" class="relative z-10 flex flex-col items-center justify-center min-h-screen">
+  <div id="main-content" class="relative z-10 flex flex-col items-center justify-center min-h-screen pb-10">
     <!-- 蛋糕容器 -->
     <div id="cake-container" class="relative w-full max-w-[300px] md:max-w-[400px] my-8">
       <!-- 蜡烛 -->
