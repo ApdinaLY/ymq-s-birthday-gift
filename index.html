@@ -309,7 +309,7 @@
   </div>
   
   <!-- 主内容区域 -->
-  <div id="main-content" class="relative z-10 flex flex-col items-center justify-center min-h-screen pb-10">
+  <div id="main-content" class="pb-10">
     <!-- 蛋糕容器 -->
     <div id="cake-container" class="relative w-full max-w-[300px] md:max-w-[400px] my-8">
       <!-- 蜡烛 -->
@@ -679,3 +679,8 @@
   </script>
 </body>
 </html>
+@media (max-width: 768px) {
+  #main-content { min-height: auto; }
+  #cake-container { max-width: 250px; }
+  .fireworks { width: 100px; height: 100px; }
+}
