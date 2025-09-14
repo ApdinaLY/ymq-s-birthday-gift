@@ -8,10 +8,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- 引入Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
   
   <!-- 配置Tailwind自定义颜色和字体 -->
   <script>
-    tailwind.config = {
+tailwind.config = {
       theme: {
         extend: {
           colors: {
@@ -69,6 +70,25 @@
     
     /* 移动端优化 */
     @media (max-width: 768px) {
+      /* 蜡烛容器适配 */
+      .velas {
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .candle img {
+        width: 60px;
+        height: 120px;
+        margin: 0 4px;
+      }
+
+      /* 新增中间尺寸适配 */
+      @media (max-width: 600px) {
+        .candle img {
+          width: 54px;
+          height: 108px;
+        }
+      }
+
       /* 减少主内容区域的高度 */
       #main-content {
         min-height: auto;
@@ -92,9 +112,12 @@
       
       /* 调整蜡烛布局 */
       .velas {
-        margin-bottom: 0.5rem !important;
-        gap: 0.5rem !important;
-      }
+     position: absolute;
+     bottom: 15%; /* 控制蜡烛在蛋糕上的垂直位置 */
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
       
       .candle > div:first-child {
         height: 10px !important;
@@ -126,6 +149,19 @@
     
     /* 小屏幕优化 */
     @media (max-width: 480px) {
+      .candle img {
+        width: 48px;
+        height: 96px;
+        margin: 0 2px;
+      }
+
+      /* 新增超小尺寸适配 */
+      @media (max-width: 320px) {
+        .candle img {
+          width: 40px;
+          height: 80px;
+        }
+      }
       #cake-container {
         transform: scale(0.7);
       }
@@ -143,7 +179,8 @@
     
     /* 首屏文字动画 */
     #intro-text {
-      animation: fadeIn 1.5s ease forwards;
+      animation: fadeIn 1.5s ease forwards,
+        fadeOut 1s ease 3s forwards;
       opacity: 0;
     }
     
@@ -152,18 +189,15 @@
         opacity: 1;
       }
     }
-    
-    /* 蜡烛火焰动画 */
-    @keyframes flicker {
-      0% {
-        transform: scale(1, 1);
-        opacity: 0.8;
-      }
-      100% {
-        transform: scale(1.1, 0.9);
-        opacity: 1;
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
       }
     }
+    
+    /* 蜡烛火焰动画 */
+    
     
     /* 烟花爆炸动画 */
     @keyframes explode {
@@ -305,7 +339,7 @@
   
   <!-- 首屏文字 -->
   <div id="intro-text" class="absolute z-20 text-white text-center text-xl md:text-3xl font-bold px-4">
-    这是为杨镁琪制作的生日礼物
+    这是杨罡为杨镁琪制作的生日礼物
   </div>
   
   <!-- 主内容区域 -->
@@ -316,20 +350,16 @@
       <div class="velas flex justify-center gap-2 md:gap-4 mb-6">
         <!-- 4根蜡烛 -->
         <div class="candle relative opacity-0 transition-opacity duration-1000">
-          <div class="w-2 h-12 bg-white rounded-t-sm mx-auto"></div>
-          <div class="fuego absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-4 h-6 bg-yellow-500 rounded-full opacity-0"></div>
+          <img src="https://s2.loli.net/2025/09/14/NzXg8Q6aqRhKynG.png" class="w-12 h-24 object-contain mx-auto">
         </div>
         <div class="candle relative opacity-0 transition-opacity duration-1000">
-          <div class="w-2 h-12 bg-white rounded-t-sm mx-auto"></div>
-          <div class="fuego absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-4 h-6 bg-yellow-500 rounded-full opacity-0"></div>
+          <img src="https://s2.loli.net/2025/09/14/NzXg8Q6aqRhKynG.png" class="w-12 h-24 object-contain mx-auto">
         </div>
         <div class="candle relative opacity-0 transition-opacity duration-1000">
-          <div class="w-2 h-12 bg-white rounded-t-sm mx-auto"></div>
-          <div class="fuego absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-4 h-6 bg-yellow-500 rounded-full opacity-0"></div>
+          <img src="https://s2.loli.net/2025/09/14/NzXg8Q6aqRhKynG.png" class="w-12 h-24 object-contain mx-auto">
         </div>
         <div class="candle relative opacity-0 transition-opacity duration-1000">
-          <div class="w-2 h-12 bg-white rounded-t-sm mx-auto"></div>
-          <div class="fuego absolute top-[-12px] left-1/2 transform -translate-x-1/2 w-4 h-6 bg-yellow-500 rounded-full opacity-0"></div>
+          <img src="https://s2.loli.net/2025/09/14/NzXg8Q6aqRhKynG.png" class="w-12 h-24 object-contain mx-auto">
         </div>
       </div>
       
@@ -498,8 +528,8 @@
       // 隐藏首屏文字
       setTimeout(() => {
         const introText = document.getElementById('intro-text');
-        introText.style.opacity = '0';
-        introText.style.transition = 'opacity 1s ease';
+        introText.style.animation = 'fadeOut 1s ease forwards';
+        introText.addEventListener('animationend', () => introText.style.display = 'none');
       }, 3000);
       
       // 蜡烛点燃功能
@@ -517,23 +547,7 @@
           }, index * 200);
         });
         
-        // 为每根蜡烛添加点击事件
-        candles.forEach((candle, index) => {
-          candle.addEventListener('click', () => {
-            if (!candle.classList.contains('lit')) {
-              candle.classList.add('lit');
-              fuegos[index].style.opacity = '1';
-              fuegos[index].classList.add('candle-flame');
-              litCandles++;
-              
-              // 创建烟花效果
-              createFirework();
-              
-              // 检查是否所有蜡烛都被点燃
-              checkAllCandlesLit();
-            }
-          });
-        });
+        
       }, 6600); // 蛋糕动画总时长约为6.6秒
       
       // 检查所有蜡烛是否都被点燃
@@ -683,5 +697,4 @@
   #main-content { min-height: auto; }
   #cake-container { max-width: 250px; }
   .fireworks { width: 100px; height: 100px; }
-
 }
