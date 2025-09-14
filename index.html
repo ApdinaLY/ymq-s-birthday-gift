@@ -113,10 +113,13 @@ tailwind.config = {
       /* 调整蜡烛布局 */
       .velas {
      position: absolute;
-     bottom: 15%; /* 控制蜡烛在蛋糕上的垂直位置 */
+     bottom: 5%;
      width: 100%;
      display: flex;
      justify-content: center;
+     flex-wrap: nowrap;
+     gap: 0.05rem;
+     padding: 6px;
 }
       
       .candle > div:first-child {
@@ -150,9 +153,9 @@ tailwind.config = {
     /* 小屏幕优化 */
     @media (max-width: 480px) {
       .candle img {
-        width: 48px;
-        height: 96px;
-        margin: 0 2px;
+        width: 52px;
+        height: 104px;
+        margin: 0 1px;
       }
 
       /* 新增超小尺寸适配 */
@@ -178,9 +181,8 @@ tailwind.config = {
     }
     
     /* 首屏文字动画 */
-    #intro-text {
-      animation: fadeIn 1.5s ease forwards,
-        fadeOut 1s ease 3s forwards;
+    #birthday-text {
+      animation: fadeIn 1s ease 2s forwards;
       opacity: 0;
     }
     
@@ -217,7 +219,7 @@ tailwind.config = {
     /* 蛋糕出现动画 */
     #cake-container {
       opacity: 0;
-      animation: cakeAppear 1s ease 2s forwards;
+      animation: cakeAppear 1s ease 0s forwards;
     }
     
     @keyframes cakeAppear {
@@ -518,7 +520,7 @@ tailwind.config = {
     <!-- 生日祝福文字 -->
     <div id="birthday-text" class="birthday-text text-center mt-8 z-20">
       <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-gradient bg-gradient-to-r from-pink-500 via-yellow-500 to-pink-500">
-        生日快乐
+        16岁生日快乐
       </h1>
     </div>
   </div>
@@ -653,7 +655,7 @@ tailwind.config = {
       // 自动播放音效（如果用户已交互）
       // 注意：自动播放音频在现代浏览器中受到限制，需要用户交互
       document.addEventListener('click', function() {
-        const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        const audio = new Audio('https://music.163.com/#/song?id=334898');
         audio.volume = 0.2;
         audio.play().catch(e => {
           console.log('无法自动播放音频:', e);
