@@ -76,8 +76,10 @@ tailwind.config = {
         margin-bottom: 1rem;
       }
       .candle img {
-        width: 8vw;
-        height: 16vw;
+        width: 12vw;
+        height: 24vw;
+        min-width: 48px;
+        min-height: 96px;
       }
 
       /* 减少主内容区域的高度 */
@@ -141,8 +143,10 @@ tailwind.config = {
     /* 小屏幕优化 */
     @media (max-width: 480px) {
       .candle img {
-        width: 10vw;
-        height: 20vw;
+        width: 16vw;
+        height: 32vw;
+        min-width: 64px;
+        min-height: 128px;
       }
       #cake-container {
         transform: scale(0.7);
