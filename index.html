@@ -70,6 +70,11 @@ tailwind.config = {
     
     /* 移动端优化 */
     @media (max-width: 768px) {
+    #comment-btn {
+      top: 30%;
+      font-size: 14px;
+      padding: 10px 20px;
+    }
       /* 蜡烛容器适配 */
       .velas {
         gap: 0.3rem;
@@ -691,6 +696,48 @@ tailwind.config = {
             el.classList.add('loaded');
           });
         });
+    });
+  </script>
+  <!-- 感言按钮 -->
+  <button id="comment-btn" class="fixed left-1/2 -translate-x-1/2 top-[20%] opacity-0 transition-opacity duration-1000 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform -translate-y-1/2 z-50" style="display: none;">
+    一些话
+  </button>
+
+  <script>
+    // 蛋糕动画完成后显示按钮
+    setTimeout(() => {
+      const btn = document.getElementById('comment-btn');
+      btn.style.display = 'block';
+      setTimeout(() => btn.classList.add('opacity-100'), 50);
+    }, 4000); // 假设蛋糕动画持续4秒
+
+    // 弹窗处理
+    document.getElementById('comment-btn').addEventListener('click', () => {
+      const content = `  这只是一点开发时的话，顺写下来了。网页布局偏低，那是因为一米八有一米八的布局，一米六有一米六的布局[doge]，做这个是暑假和大黄聊了一下游戏开发的事，想到这个点子的，之后又拖到八月下旬想开始做的，结果还得补课，就又拖到月末开始做的，之后又有大大小小的事缠身，也是时做时停，到周末爆肝一下，又因为我html水平不是很高，周天还有兴趣班，导致有时遇到不会的东东还得去查资料（杨的崩溃），光一个蛋糕夏洛的动画就写了快一周，最后也勉勉强强拖拖拉拉的写出来的这个网站，学艺不精，粗糙之处还不要说我了TwT，本来只是想写点开发感言的，结果又写了这么多，都快有一篇小作文了吧qwq。
+  好了，言尽于此，祝你生日快乐，希望你新的一岁所遇皆良人，所行皆坦途。祝你越长越高awa`;
+      
+      const newWindow = window.open('', '_blank', 
+        'width=500,height=600,left=100,top=100,toolbar=no,location=no,status=no');
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>开发感言</title>
+            <style>
+              body { 
+                padding: 20px 20px 40px;
+                line-height: 1.6;
+                font-size: 16px;
+                background: #fff0f5;
+                white-space: pre-wrap;
+              }
+            </style>
+          </head>
+          <body>
+        <img src="https://s2.loli.net/2025/09/18/8ywaFiBGHAN6USE.png" style="max-width: 80%; margin: 20px auto; display: block;">
+        <div style="margin: 0 20px 20px;">${content}</div>
+      </body>
+        </html>
+      `);
     });
   </script>
 </body>
